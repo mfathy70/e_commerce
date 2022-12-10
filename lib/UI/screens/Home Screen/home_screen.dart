@@ -21,7 +21,7 @@ List<FeaturedOffer> featuredOffersList = [
 List<Vendor> featuredVendors = [
   Vendor(
     vendorImage: 'assets/images/ph.jpg',
-    vendorName: 'Pharmacy',
+    vendorName: 'Pharmacies',
   ),
 ];
 
