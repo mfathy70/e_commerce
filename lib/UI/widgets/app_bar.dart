@@ -20,14 +20,6 @@ class AppBarWidget extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 mainAxisSize: MainAxisSize.max,
                 children: [
-                  /*IconButton(
-                      onPressed: () {
-                        ZoomDrawer.of(context)!.open();
-                      },
-                      icon: Icon(
-                        Icons.menu_rounded,
-                        color: Theme.of(context).colorScheme.background,
-                      )),*/
                   Padding(
                       padding: const EdgeInsets.only(left: 15.0),
                       child: leading),

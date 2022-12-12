@@ -1,10 +1,13 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:e_commerce/model/category.dart';
 import 'package:e_commerce/model/fetured_offers.dart';
 import 'package:e_commerce/model/vendor.dart';
 import 'package:e_commerce/UI/screens/marketplace_screen.dart';
 import 'package:e_commerce/UI/screens/my_account_screen.dart';
 import 'package:e_commerce/UI/screens/My%20Orders%20Screen/my_orders_screen.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
+import '../../../notfication/notification_services.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -76,6 +79,32 @@ List<Category> categories = [
 
 class _HomeScreenState extends State<HomeScreen> {
   int _selectedIndex = 0;
+  String? mtoken = " ";
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    requestPermission();
+    getToken();
+    initInfo();
+  }
+
+  void getToken() async {
+    await FirebaseMessaging.instance.getToken().then((token) {
+      setState(() {
+        mtoken = token;
+        print("My token is $mtoken");
+      });
+      saveToken(token!);
+    });
+  }
+
+  void saveToken(String token) async {
+    await FirebaseFirestore.instance.collection("UserTokens").doc("User1").set({
+      'token': token,
+    });
+  }
 
   void _onItemTapped(int index) {
     setState(() {
