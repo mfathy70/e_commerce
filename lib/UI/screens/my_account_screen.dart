@@ -1,4 +1,7 @@
 import 'package:e_commerce/UI/widgets/app_bar.dart';
+import 'package:e_commerce/phone_login_screen.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
 class MyAccountScreen extends StatefulWidget {
@@ -84,17 +87,7 @@ class _MyOrdersScreenState extends State<MyAccountScreen> {
               children: [
                 Padding(
                   padding: const EdgeInsets.only(left: 20, top: 10),
-                  child: TextButton(
-                    onPressed: () {},
-                    child: Text(
-                      'LOG IN',
-                      style: TextStyle(
-                        color: Theme.of(context).primaryColor,
-                        fontWeight: FontWeight.w600,
-                        fontSize: 18,
-                      ),
-                    ),
-                  ),
+                  child: LoginButton(),
                 ),
               ],
             ),
@@ -115,6 +108,53 @@ class _MyOrdersScreenState extends State<MyAccountScreen> {
         ),
       ),
     );
+  }
+}
+
+class LoginButton extends StatefulWidget {
+  const LoginButton({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  State<LoginButton> createState() => _LoginButtonState();
+}
+
+class _LoginButtonState extends State<LoginButton> {
+  @override
+  Widget build(BuildContext context) {
+    if (FirebaseAuth.instance.currentUser != null) {
+      setState(() {});
+      return TextButton(
+        onPressed: () {
+          FirebaseAuth.instance.signOut();
+        },
+        child: Text(
+          'LOG OUT',
+          style: TextStyle(
+            color: Colors.grey,
+            fontWeight: FontWeight.w600,
+            fontSize: 18,
+          ),
+        ),
+      );
+    } else {
+      return TextButton(
+        onPressed: () {
+          Navigator.push(context, MaterialPageRoute(builder: (context) {
+            return PhoneLoginScreen();
+          }));
+        },
+        child: Text(
+          'LOG IN',
+          style: TextStyle(
+            color: Theme.of(context).primaryColor,
+            fontWeight: FontWeight.w600,
+            fontSize: 18,
+          ),
+        ),
+      );
+    }
   }
 }
 

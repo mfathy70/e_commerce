@@ -45,8 +45,11 @@ dependencies:
   provider: 
   flutter_local_notifications: ^12.0.4
   firebase_core: ^2.4.0
+  firebase_auth: ^4.2.0
   firebase_messaging: ^14.1.4
   cloud_firestore: ^4.2.0
+  pin_code_fields: ^7.4.0
+  flutter_easyloading: ^3.0.5
   
 
 dev_dependencies:

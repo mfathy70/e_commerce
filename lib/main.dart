@@ -1,8 +1,10 @@
 import 'package:e_commerce/UI/screens/Home%20Screen/home_screen.dart';
+import 'package:e_commerce/providers/phone_confirmation_provider.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:provider/provider.dart';
 
 Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
   print("Handle a background message ${message.messageId}");
@@ -13,7 +15,10 @@ Future<void> main() async {
   await Firebase.initializeApp();
   await FirebaseMessaging.instance.getInitialMessage();
   FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
-  runApp(const MyApp());
+  runApp(MultiProvider(
+    providers: [ChangeNotifierProvider(create: (_) => PhoneConfirmation())],
+    child: const MyApp(),
+  ));
 }
 
 class MyApp extends StatelessWidget {
@@ -30,6 +35,8 @@ class MyApp extends StatelessWidget {
           primaryColor: Colors.red[800],
           bottomAppBarColor: Colors.grey[300],
           backgroundColor: Colors.white,
+          appBarTheme: AppBarTheme(
+              color: Colors.red[800], foregroundColor: Colors.white),
           fontFamily: 'Cairo',
           colorScheme: ColorScheme.fromSwatch().copyWith(
             secondary: Colors.blueGrey[900],
