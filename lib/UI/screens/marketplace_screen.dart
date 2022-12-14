@@ -20,8 +20,12 @@ class MarketplaceScreen extends StatelessWidget {
         Column(
           children: [
             AppBarWidget(
-                leading: Image.asset(
-              'assets/images/logo3.png',
+                leading: Text(
+              'E-commerce',
+              style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 24,
+                  fontWeight: FontWeight.w600),
             )),
             const SearchButton(),
           ],

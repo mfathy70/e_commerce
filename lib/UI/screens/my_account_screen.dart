@@ -1,5 +1,5 @@
 import 'package:e_commerce/UI/widgets/app_bar.dart';
-import 'package:e_commerce/phone_login_screen.dart';
+import 'package:e_commerce/UI/screens/Phone%20Login%20Screens/phone_login_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
