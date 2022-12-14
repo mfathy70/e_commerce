@@ -60,8 +60,8 @@ class _codeConfirmationScreenState extends State<CodeConfirmationScreen> {
                 onCompleted: (value) {
                   print(value);
                   code = value;
-                  //Provider.of<PhoneConfirmation>(context, listen: false)
-                  //.codeConfirm(value);
+                  Provider.of<PhoneConfirmation>(context, listen: false)
+                      .codeConfirm(code!, widget.verificationId, context);
                 },
                 onChanged: (value) {
                   print(value);

@@ -39,14 +39,13 @@ class CatigoriesWidget extends StatelessWidget {
           ),
         ),
         SizedBox(
-          height: 155,
+          height: 330,
           child: GridView.builder(
             padding: const EdgeInsets.symmetric(horizontal: 10),
             scrollDirection: Axis.horizontal,
             gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 1,
+              crossAxisCount: 2,
               mainAxisSpacing: 2,
-              crossAxisSpacing: 0.0,
               mainAxisExtent: 115.0,
             ),
             itemCount: categories.length,

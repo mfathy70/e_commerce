@@ -4,7 +4,7 @@ import 'package:e_commerce/UI/widgets/loading_widget.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
-import '../code_onfirmation_screen.dart';
+import '../UI/screens/Phone Login Screens/code_onfirmation_screen.dart';
 
 class PhoneConfirmation extends ChangeNotifier {
   String phone = " ";

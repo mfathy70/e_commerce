@@ -21,7 +21,7 @@ class MarketplaceScreen extends StatelessWidget {
           children: [
             AppBarWidget(
                 leading: Text(
-              'E-commerce',
+              'Super Be',
               style: TextStyle(
                   color: Colors.white,
                   fontSize: 24,
@@ -38,7 +38,7 @@ class MarketplaceScreen extends StatelessWidget {
                 const DeliveringTo(),
                 const SizedBox(height: 18),
                 CatigoriesWidget(categories: categories),
-                FeaturedOffers(featuredOffers: featuredOffersList),
+                //FeaturedOffers(featuredOffers: featuredOffersList),
                 FeaturedVendors(vendors: discountsVendors, label: 'Discounts'),
                 FeaturedVendors(
                     vendors: featuredVendors, label: 'Health and well-being'),

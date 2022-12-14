@@ -1,4 +1,4 @@
-import 'package:e_commerce/google_map_screen.dart';
+import 'package:e_commerce/UI/screens/google_map_screen.dart';
 import 'package:flutter/material.dart';
 
 class DeliveringTo extends StatelessWidget {

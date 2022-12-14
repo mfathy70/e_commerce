@@ -1,7 +1,6 @@
 import 'package:e_commerce/UI/widgets/app_bar.dart';
 import 'package:e_commerce/UI/screens/Phone%20Login%20Screens/phone_login_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
 class MyAccountScreen extends StatefulWidget {
@@ -123,38 +122,42 @@ class LoginButton extends StatefulWidget {
 class _LoginButtonState extends State<LoginButton> {
   @override
   Widget build(BuildContext context) {
-    if (FirebaseAuth.instance.currentUser != null) {
-      setState(() {});
-      return TextButton(
-        onPressed: () {
-          FirebaseAuth.instance.signOut();
-        },
-        child: Text(
-          'LOG OUT',
-          style: TextStyle(
-            color: Colors.grey,
-            fontWeight: FontWeight.w600,
-            fontSize: 18,
-          ),
-        ),
-      );
-    } else {
-      return TextButton(
-        onPressed: () {
-          Navigator.push(context, MaterialPageRoute(builder: (context) {
-            return PhoneLoginScreen();
-          }));
-        },
-        child: Text(
-          'LOG IN',
-          style: TextStyle(
-            color: Theme.of(context).primaryColor,
-            fontWeight: FontWeight.w600,
-            fontSize: 18,
-          ),
-        ),
-      );
-    }
+    return StreamBuilder<User?>(
+      stream: FirebaseAuth.instance.authStateChanges(),
+      builder: (BuildContext context, AsyncSnapshot snapshot) {
+        if (snapshot.connectionState == ConnectionState.active) {
+          User? user = snapshot.data;
+          if (user == null) {
+            return TextButton(
+                onPressed: () {
+                  Navigator.push(context, MaterialPageRoute(builder: (context) {
+                    return PhoneLoginScreen();
+                  }));
+                },
+                child: Text(
+                  'LOG IN',
+                  style: TextStyle(
+                    color: Theme.of(context).primaryColor,
+                    fontWeight: FontWeight.w600,
+                    fontSize: 18,
+                  ),
+                ));
+          }
+        }
+        return TextButton(
+            onPressed: () {
+              FirebaseAuth.instance.signOut();
+            },
+            child: Text(
+              'LOG OUT',
+              style: TextStyle(
+                color: Colors.grey,
+                fontWeight: FontWeight.w600,
+                fontSize: 18,
+              ),
+            ));
+      },
+    );
   }
 }
 
