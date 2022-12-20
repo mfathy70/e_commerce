@@ -1,5 +1,6 @@
 import 'package:e_commerce/UI/widgets/app_bar.dart';
 import 'package:e_commerce/UI/screens/Phone%20Login%20Screens/phone_login_screen.dart';
+import 'package:e_commerce/model/my_account_screen_button.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
@@ -11,6 +12,34 @@ class MyAccountScreen extends StatefulWidget {
 }
 
 class _MyOrdersScreenState extends State<MyAccountScreen> {
+  List<MyAccButton> buttonsList = [
+    MyAccButton(
+      title: "Personal details",
+      subtitle: "First name, Last name, mobile number",
+      icon: Icons.person,
+    ),
+    MyAccButton(
+      title: "Delivery addresses",
+      subtitle: "edit and delete addresses",
+      icon: Icons.location_on_outlined,
+    ),
+    MyAccButton(
+      title: 'My Points',
+      subtitle: "Manage your Points",
+      icon: Icons.monetization_on_outlined,
+    ),
+    MyAccButton(
+      title: "My reviews",
+      subtitle: 'All the reviews you have made',
+      icon: Icons.star_rounded,
+    ),
+    MyAccButton(
+      title: 'Settings',
+      subtitle: 'Languages, search and nearby',
+      icon: Icons.settings_outlined,
+    )
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -28,59 +57,29 @@ class _MyOrdersScreenState extends State<MyAccountScreen> {
           mainAxisAlignment: MainAxisAlignment.start,
           mainAxisSize: MainAxisSize.max,
           children: [
-            const MyAccountScreenButton(
-              icon: Icons.person,
-              title: 'Personal details',
-              subtitle: 'First name, last name, mobile number',
-            ),
-            const Padding(
-              padding: EdgeInsets.only(left: 20),
-              child: Divider(thickness: 0.8),
-            ),
-            const MyAccountScreenButton(
-              icon: Icons.location_on_outlined,
-              title: 'Delivery addresses',
-              subtitle: 'Add, edit, and delete address',
-            ),
-            const Padding(
-              padding: EdgeInsets.only(left: 20),
-              child: Divider(thickness: 0.8),
-            ),
-            const MyAccountScreenButton(
-              icon: Icons.monetization_on_rounded,
-              title: 'My Points',
-              subtitle: 'Manage your Points',
-            ),
-            const Padding(
-              padding: EdgeInsets.only(left: 20),
-              child: Divider(thickness: 0.8),
-            ),
-            const MyAccountScreenButton(
-              icon: Icons.card_giftcard_rounded,
-              title: 'Loyalty cards',
-              subtitle: 'Add and delete loyalty cards',
-            ),
-            const Padding(
-              padding: EdgeInsets.only(left: 20),
-              child: Divider(thickness: 0.8),
-            ),
-            const MyAccountScreenButton(
-              icon: Icons.star_rounded,
-              title: 'My reviews',
-              subtitle: 'All the reviews you have made',
-            ),
-            const Padding(
-              padding: EdgeInsets.only(left: 20),
-              child: Divider(thickness: 0.8),
-            ),
-            const MyAccountScreenButton(
-              icon: Icons.settings_outlined,
-              title: 'Settings',
-              subtitle: 'Languages, search and nearby',
-            ),
-            const Padding(
-              padding: EdgeInsets.only(left: 20),
-              child: Divider(thickness: 0.8),
+            ListView.builder(
+              physics: const NeverScrollableScrollPhysics(),
+              shrinkWrap: true,
+              itemCount: buttonsList.length,
+              itemBuilder: (BuildContext context, int index) {
+                return GestureDetector(
+                  child: Column(
+                    children: [
+                      MyAccountScreenButton(
+                          icon: buttonsList[index].icon,
+                          title: buttonsList[index].title,
+                          subtitle: buttonsList[index].subtitle),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 20),
+                        child: Divider(thickness: 0.8),
+                      ),
+                    ],
+                  ),
+                  onTap: () {
+                    print(buttonsList[index].title);
+                  },
+                );
+              },
             ),
             Row(
               children: [
@@ -195,7 +194,6 @@ class MyAccountScreenButton extends StatelessWidget {
           Icons.arrow_forward_ios_rounded,
           size: 16,
         ),
-        onTap: () {},
       ),
     );
   }

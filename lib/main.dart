@@ -1,4 +1,4 @@
-import 'package:e_commerce/UI/screens/Home%20Screen/home_screen.dart';
+import 'package:e_commerce/UI/screens/splash_screen.dart';
 import 'package:e_commerce/providers/phone_confirmation_provider.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
@@ -56,6 +56,6 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
-    return const HomeScreen();
+    return const SplashScreen();
   }
 }

@@ -1,5 +1,6 @@
-import 'package:e_commerce/main.dart';
+import 'package:e_commerce/UI/screens/Home%20Screen/home_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:lottie/lottie.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -19,28 +20,33 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: AnimatedOpacity(
-        duration: const Duration(milliseconds: 1600),
-        opacity: animate ? 1 : 0,
-        child: SizedBox(
-          height: double.infinity,
-          child: Center(
-            child: Image.asset(
-              'assets/images/logo2.png',
+        backgroundColor: Theme.of(context).primaryColor,
+        body: Center(
+          child: SizedBox(
+            width: 350,
+            height: 350,
+            child: Container(
+              decoration: const BoxDecoration(
+                shape: BoxShape.circle,
+                color: Colors.white,
+              ),
+              child: Lottie.asset(
+                'assets/animation/splash.json',
+                fit: BoxFit.contain,
+                repeat: false,
+              ),
             ),
           ),
-        ),
-      ),
-    );
+        ));
   }
 
   Future startAnimation() async {
-    await Future.delayed(const Duration(milliseconds: 500));
+    await Future.delayed(const Duration(milliseconds: 1800));
     setState(() {
       animate = true;
     });
-    await Future.delayed(const Duration(milliseconds: 5000));
+    await Future.delayed(const Duration(milliseconds: 1800));
     Navigator.pushReplacement(
-        context, MaterialPageRoute(builder: (context) => const MyHomePage()));
+        context, MaterialPageRoute(builder: (context) => const HomeScreen()));
   }
 }
