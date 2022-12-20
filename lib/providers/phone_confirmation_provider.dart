@@ -1,6 +1,3 @@
-import 'dart:math';
-
-import 'package:e_commerce/UI/widgets/loading_widget.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
@@ -49,7 +46,7 @@ class PhoneConfirmation extends ChangeNotifier {
       await FirebaseAuth.instance
           .signInWithCredential(credential)
           .then((value) => print("Account created"));
-      Navigator.popUntil(context, ModalRoute.withName('/'));
+      Navigator.pop(context);
     } catch (e) {
       final snackBar = SnackBar(content: Text("Invalid Verification code"));
       ScaffoldMessenger.of(context).showSnackBar(snackBar);

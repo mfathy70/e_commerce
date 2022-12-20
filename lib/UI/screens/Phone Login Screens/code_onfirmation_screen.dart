@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 import 'package:provider/provider.dart';
 
+import '../My Account Screen/My account widgets/my_account_button.dart';
+
 class CodeConfirmationScreen extends StatefulWidget {
   const CodeConfirmationScreen({
     super.key,
@@ -95,29 +97,22 @@ class _codeConfirmationScreenState extends State<CodeConfirmationScreen> {
             Expanded(child: SizedBox()),
             Padding(
               padding: const EdgeInsets.only(bottom: 22),
-              child: ElevatedButton(
+              child: MyAccountButton(
                 onPressed: () {
-                  print(code);
-                  Provider.of<PhoneConfirmation>(context, listen: false)
-                      .codeConfirm(code!, widget.verificationId, context);
+                  onPressed(context);
                 },
-                child: Text(
-                  'Continue',
-                  style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 20,
-                      fontWeight: FontWeight.w600),
-                ),
-                style: ElevatedButton.styleFrom(
-                    fixedSize: Size(360, 60),
-                    backgroundColor: Theme.of(context).primaryColor,
-                    padding:
-                        EdgeInsets.symmetric(horizontal: 70, vertical: 14)),
+                label: 'Continue',
               ),
             ),
           ],
         ),
       ),
     );
+  }
+
+  void onPressed(BuildContext context) {
+    print(code);
+    Provider.of<PhoneConfirmation>(context, listen: false)
+        .codeConfirm(code!, widget.verificationId, context);
   }
 }

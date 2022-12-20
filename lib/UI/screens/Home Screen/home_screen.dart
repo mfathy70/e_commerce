@@ -3,7 +3,7 @@ import 'package:e_commerce/model/category.dart';
 import 'package:e_commerce/model/fetured_offers.dart';
 import 'package:e_commerce/model/vendor.dart';
 import 'package:e_commerce/UI/screens/marketplace_screen.dart';
-import 'package:e_commerce/UI/screens/my_account_screen.dart';
+import 'package:e_commerce/UI/screens/My%20Account%20Screen/my_account_screen.dart';
 import 'package:e_commerce/UI/screens/My%20Orders%20Screen/my_orders_screen.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';

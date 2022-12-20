@@ -1,3 +1,5 @@
+import 'package:e_commerce/UI/screens/My%20Account%20Screen/delivery_addresses_screen.dart';
+import 'package:e_commerce/UI/screens/My%20Account%20Screen/personal_details_screen.dart';
 import 'package:e_commerce/UI/widgets/app_bar.dart';
 import 'package:e_commerce/UI/screens/Phone%20Login%20Screens/phone_login_screen.dart';
 import 'package:e_commerce/model/my_account_screen_button.dart';
@@ -17,11 +19,13 @@ class _MyOrdersScreenState extends State<MyAccountScreen> {
       title: "Personal details",
       subtitle: "First name, Last name, mobile number",
       icon: Icons.person,
+      Screen: const PersonalDetails(),
     ),
     MyAccButton(
       title: "Delivery addresses",
       subtitle: "edit and delete addresses",
       icon: Icons.location_on_outlined,
+      Screen: const DeliveryAddresses(),
     ),
     MyAccButton(
       title: 'My Points',
@@ -62,13 +66,14 @@ class _MyOrdersScreenState extends State<MyAccountScreen> {
               shrinkWrap: true,
               itemCount: buttonsList.length,
               itemBuilder: (BuildContext context, int index) {
+                final List = buttonsList[index];
                 return GestureDetector(
                   child: Column(
                     children: [
-                      MyAccountScreenButton(
-                          icon: buttonsList[index].icon,
-                          title: buttonsList[index].title,
-                          subtitle: buttonsList[index].subtitle),
+                      MyAccountScreenListTile(
+                          icon: List.icon,
+                          title: List.title,
+                          subtitle: List.subtitle),
                       Padding(
                         padding: const EdgeInsets.only(left: 20),
                         child: Divider(thickness: 0.8),
@@ -76,7 +81,9 @@ class _MyOrdersScreenState extends State<MyAccountScreen> {
                     ],
                   ),
                   onTap: () {
-                    print(buttonsList[index].title);
+                    print(List.title);
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => List.Screen));
                   },
                 );
               },
@@ -160,8 +167,8 @@ class _LoginButtonState extends State<LoginButton> {
   }
 }
 
-class MyAccountScreenButton extends StatelessWidget {
-  const MyAccountScreenButton({
+class MyAccountScreenListTile extends StatelessWidget {
+  const MyAccountScreenListTile({
     Key? key,
     required this.icon,
     required this.title,

@@ -1,3 +1,4 @@
+import 'package:e_commerce/UI/screens/My%20Account%20Screen/My%20account%20widgets/my_account_button.dart';
 import 'package:e_commerce/providers/phone_confirmation_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -84,27 +85,22 @@ class _PhoneLoginScreenState extends State<PhoneLoginScreen> {
               ),
               Expanded(child: SizedBox()),
               Padding(
-                padding: const EdgeInsets.only(bottom: 22),
-                child: ElevatedButton(
-                  onPressed: () {
-                    print("+20${phoneNumberController.text}");
-                    Provider.of<PhoneConfirmation>(context, listen: false)
-                        .phoneLogin(phoneNumberController.text, context);
-                  },
-                  child: Text(
-                    'Send confirmation code',
-                    style: TextStyle(color: Colors.white, fontSize: 20),
-                  ),
-                  style: ElevatedButton.styleFrom(
-                      backgroundColor: Theme.of(context).primaryColor,
-                      padding:
-                          EdgeInsets.symmetric(horizontal: 70, vertical: 14)),
-                ),
-              )
+                  padding: const EdgeInsets.only(bottom: 22),
+                  child: MyAccountButton(
+                      onPressed: () {
+                        onPressed(context);
+                      },
+                      label: 'Send confirmation code'))
             ],
           ),
         ),
       ),
     );
+  }
+
+  void onPressed(BuildContext context) {
+    print("+20${phoneNumberController.text}");
+    Provider.of<PhoneConfirmation>(context, listen: false)
+        .phoneLogin(phoneNumberController.text, context);
   }
 }
