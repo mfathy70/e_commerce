@@ -13,7 +13,7 @@ class PhoneConfirmation extends ChangeNotifier {
 
     await auth.verifyPhoneNumber(
       phoneNumber: "+20$phonenumber",
-      timeout: Duration(seconds: 60),
+      timeout: const Duration(seconds: 60),
       verificationCompleted: (PhoneAuthCredential credential) async {
         await auth.signInWithCredential(credential);
       },
@@ -48,7 +48,7 @@ class PhoneConfirmation extends ChangeNotifier {
           .then((value) => print("Account created"));
       Navigator.pop(context);
     } catch (e) {
-      final snackBar = SnackBar(content: Text("Invalid Verification code"));
+      const snackBar = SnackBar(content: Text("Invalid Verification code"));
       ScaffoldMessenger.of(context).showSnackBar(snackBar);
     }
 

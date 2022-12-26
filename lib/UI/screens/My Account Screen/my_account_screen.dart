@@ -6,6 +6,8 @@ import 'package:e_commerce/model/my_account_screen_button.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
+import 'my_points_screen.dart';
+
 class MyAccountScreen extends StatefulWidget {
   const MyAccountScreen({super.key});
 
@@ -31,16 +33,19 @@ class _MyOrdersScreenState extends State<MyAccountScreen> {
       title: 'My Points',
       subtitle: "Manage your Points",
       icon: Icons.monetization_on_outlined,
+      Screen: const MyPointsScreen(),
     ),
     MyAccButton(
       title: "My reviews",
       subtitle: 'All the reviews you have made',
       icon: Icons.star_rounded,
+      Screen: null,
     ),
     MyAccButton(
       title: 'Settings',
       subtitle: 'Languages, search and nearby',
       icon: Icons.settings_outlined,
+      Screen: null,
     )
   ];
 
@@ -74,14 +79,13 @@ class _MyOrdersScreenState extends State<MyAccountScreen> {
                           icon: List.icon,
                           title: List.title,
                           subtitle: List.subtitle),
-                      Padding(
-                        padding: const EdgeInsets.only(left: 20),
+                      const Padding(
+                        padding: EdgeInsets.only(left: 20),
                         child: Divider(thickness: 0.8),
                       ),
                     ],
                   ),
                   onTap: () {
-                    print(List.title);
                     Navigator.push(context,
                         MaterialPageRoute(builder: (context) => List.Screen));
                   },
@@ -89,9 +93,9 @@ class _MyOrdersScreenState extends State<MyAccountScreen> {
               },
             ),
             Row(
-              children: [
+              children: const [
                 Padding(
-                  padding: const EdgeInsets.only(left: 20, top: 10),
+                  padding: EdgeInsets.only(left: 20, top: 10),
                   child: LoginButton(),
                 ),
               ],
@@ -137,7 +141,7 @@ class _LoginButtonState extends State<LoginButton> {
             return TextButton(
                 onPressed: () {
                   Navigator.push(context, MaterialPageRoute(builder: (context) {
-                    return PhoneLoginScreen();
+                    return const PhoneLoginScreen();
                   }));
                 },
                 child: Text(
@@ -154,7 +158,7 @@ class _LoginButtonState extends State<LoginButton> {
             onPressed: () {
               FirebaseAuth.instance.signOut();
             },
-            child: Text(
+            child: const Text(
               'LOG OUT',
               style: TextStyle(
                 color: Colors.grey,

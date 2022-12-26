@@ -23,12 +23,6 @@ class AppBarWidget extends StatelessWidget {
                   Padding(
                       padding: const EdgeInsets.only(left: 15.0),
                       child: leading),
-                  ClipRRect(
-                      borderRadius: BorderRadius.circular(10),
-                      child: Image.asset(
-                        'assets/images/logo.jpg',
-                        height: 0,
-                      )),
                   IconButton(
                       onPressed: () {},
                       icon: const Icon(

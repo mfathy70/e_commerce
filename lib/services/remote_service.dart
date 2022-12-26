@@ -9,9 +9,13 @@ class RemoteService {
 
     var response = await client.get(uri);
 
-    if (response.statusCode == 200) {
-      var json = response.body;
-      return welcomeFromJson(json);
+    try {
+      if (response.statusCode == 200) {
+        var json = response.body;
+        return welcomeFromJson(json);
+      }
+    } catch (e) {
+      // TODO
     }
   }
 
@@ -22,7 +26,6 @@ class RemoteService {
 
     var uri = Uri.parse(
         'https://maps.googleapis.com/maps/api/geocode/json?latlng=$lat,$long&sensor=false&key=AIzaSyBdCFQ-57AwfLofpxfWjx-IAma-s5cCWk4');
-
     var response = await client.get(uri);
 
     // if (response.statusCode == 200) {

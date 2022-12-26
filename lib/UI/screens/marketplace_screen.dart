@@ -18,7 +18,7 @@ class MarketplaceScreen extends StatelessWidget {
     return Column(
       children: [
         Column(
-          children: [
+          children: const [
             AppBarWidget(
                 leading: Text(
               'Super Be',
@@ -27,7 +27,7 @@ class MarketplaceScreen extends StatelessWidget {
                   fontSize: 24,
                   fontWeight: FontWeight.w600),
             )),
-            const SearchButton(),
+            SearchButton(),
           ],
         ),
         Expanded(

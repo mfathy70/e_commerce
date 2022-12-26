@@ -4,6 +4,7 @@ import 'package:pin_code_fields/pin_code_fields.dart';
 import 'package:provider/provider.dart';
 
 import '../My Account Screen/My account widgets/my_account_button.dart';
+import '../My Account Screen/My account widgets/my_account_outlined_button.dart';
 
 class CodeConfirmationScreen extends StatefulWidget {
   const CodeConfirmationScreen({
@@ -31,7 +32,7 @@ class _codeConfirmationScreenState extends State<CodeConfirmationScreen> {
             onPressed: () {
               Navigator.pop(context);
             },
-            icon: Icon(
+            icon: const Icon(
               Icons.arrow_back_rounded,
               color: Colors.white,
             )),
@@ -42,14 +43,14 @@ class _codeConfirmationScreenState extends State<CodeConfirmationScreen> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            SizedBox(height: 16),
-            Text(
+            const SizedBox(height: 16),
+            const Text(
               'We sent you a six digit number.',
               style: TextStyle(fontSize: 20, fontWeight: FontWeight.w600),
             ),
-            SizedBox(height: 16),
+            const SizedBox(height: 16),
             Container(
-              padding: EdgeInsets.symmetric(horizontal: 18),
+              padding: const EdgeInsets.symmetric(horizontal: 18),
               child: PinCodeTextField(
                 controller: codeController,
                 autoFocus: true,
@@ -79,22 +80,13 @@ class _codeConfirmationScreenState extends State<CodeConfirmationScreen> {
                 ),
               ),
             ),
-            SizedBox(height: 16),
-            OutlinedButton(
+            const SizedBox(height: 16),
+            MyAccOutlinedButton(
+              label: 'Resend code',
               onPressed: () {},
-              child: Text(
-                'Resend code',
-                style: TextStyle(
-                    color: Colors.black,
-                    fontSize: 19,
-                    fontWeight: FontWeight.w600),
-              ),
-              style: OutlinedButton.styleFrom(
-                  side: BorderSide(
-                      width: 2.3, color: Colors.grey.withOpacity(0.8)),
-                  padding: EdgeInsets.symmetric(horizontal: 16, vertical: 12)),
+              isExpanded: false,
             ),
-            Expanded(child: SizedBox()),
+            const Expanded(child: SizedBox()),
             Padding(
               padding: const EdgeInsets.only(bottom: 22),
               child: MyAccountButton(

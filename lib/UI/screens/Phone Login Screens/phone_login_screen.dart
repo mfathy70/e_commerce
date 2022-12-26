@@ -23,11 +23,11 @@ class _PhoneLoginScreenState extends State<PhoneLoginScreen> {
             onPressed: () {
               Navigator.pop(context);
             },
-            icon: Icon(
+            icon: const Icon(
               Icons.arrow_back_rounded,
               color: Colors.white,
             )),
-        title: Text("Phone Number"),
+        title: const Text("Phone Number"),
       ),
       body: SizedBox(
         width: MediaQuery.of(context).size.width,
@@ -44,8 +44,8 @@ class _PhoneLoginScreenState extends State<PhoneLoginScreen> {
                   scale: 15,
                 ),
               ),
-              Padding(
-                padding: const EdgeInsets.only(bottom: 12),
+              const Padding(
+                padding: EdgeInsets.only(bottom: 12),
                 child: Text(
                   "What's your phone number?",
                   style: TextStyle(fontSize: 20, fontWeight: FontWeight.w600),
@@ -55,22 +55,24 @@ class _PhoneLoginScreenState extends State<PhoneLoginScreen> {
                 decoration: InputDecoration(
                   enabledBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(12),
-                      borderSide: BorderSide(width: 0.1, color: Colors.grey)),
+                      borderSide:
+                          const BorderSide(width: 0.1, color: Colors.grey)),
                   focusedBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(12),
-                      borderSide: BorderSide(width: 0.1, color: Colors.grey)),
+                      borderSide:
+                          const BorderSide(width: 0.1, color: Colors.grey)),
                   fillColor: Colors.blueGrey[50],
                   isDense: true,
                   filled: true,
                   hintText: "Phone Number",
-                  hintStyle: TextStyle(color: Colors.black, fontSize: 16),
-                  prefixIcon: Text(
+                  hintStyle: const TextStyle(color: Colors.black, fontSize: 16),
+                  prefixIcon: const Text(
                     '   +20   ',
                     style: TextStyle(fontSize: 16),
                   ),
                   prefixIconConstraints:
-                      BoxConstraints(minWidth: 22, maxHeight: 22),
-                  suffixIcon: Icon(
+                      const BoxConstraints(minWidth: 22, maxHeight: 22),
+                  suffixIcon: const Icon(
                     Icons.search_rounded,
                     size: 24,
                     color: Colors.black,
@@ -83,7 +85,7 @@ class _PhoneLoginScreenState extends State<PhoneLoginScreen> {
                 ],
                 controller: phoneNumberController,
               ),
-              Expanded(child: SizedBox()),
+              const Expanded(child: SizedBox()),
               Padding(
                   padding: const EdgeInsets.only(bottom: 22),
                   child: MyAccountButton(

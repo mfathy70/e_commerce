@@ -36,7 +36,7 @@ class VendorsGridView extends StatelessWidget {
                   Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => VendorScreen(
+                          builder: (context) => const VendorScreen(
                                 vendorName: 'test',
                               )));
                 }));

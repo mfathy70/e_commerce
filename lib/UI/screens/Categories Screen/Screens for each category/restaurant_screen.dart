@@ -1,7 +1,6 @@
 import 'package:e_commerce/model/restaurant_data.dart';
 import 'package:e_commerce/services/remote_service.dart';
 import 'package:flutter/material.dart';
-
 import '../filter_action_button.dart';
 import '../vendors_grid_view.dart';
 
@@ -28,7 +27,8 @@ class _RestaurantScreenState extends State<RestaurantScreen> {
     restaurantstest = await RemoteService().getRestaurantsData();
     if (restaurantstest != null) {
       setState(() {
-        isLoaded = true;
+        //____________stop api__________
+        //isLoaded = true;
       });
     }
   }

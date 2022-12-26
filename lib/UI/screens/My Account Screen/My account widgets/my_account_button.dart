@@ -11,15 +11,15 @@ class MyAccountButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return ElevatedButton(
       onPressed: onPressed,
+      style: ElevatedButton.styleFrom(
+          fixedSize: const Size(360, 60),
+          backgroundColor: Theme.of(context).primaryColor,
+          padding: const EdgeInsets.symmetric(horizontal: 70, vertical: 14)),
       child: Text(
         label,
-        style: TextStyle(
+        style: const TextStyle(
             color: Colors.white, fontSize: 20, fontWeight: FontWeight.w600),
       ),
-      style: ElevatedButton.styleFrom(
-          fixedSize: Size(360, 60),
-          backgroundColor: Theme.of(context).primaryColor,
-          padding: EdgeInsets.symmetric(horizontal: 70, vertical: 14)),
     );
   }
 }

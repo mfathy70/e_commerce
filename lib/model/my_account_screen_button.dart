@@ -9,6 +9,6 @@ class MyAccButton {
     required this.title,
     required this.subtitle,
     required this.icon,
-    this.Screen,
+    required this.Screen,
   });
 }
