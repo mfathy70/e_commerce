@@ -17,7 +17,9 @@ class BakeryScreen extends StatelessWidget {
           ),*/
         ],
       ),
-      floatingActionButton: const FilterFloatingActionButton(),
+      floatingActionButton: const FilterFloatingActionButton(
+        tag: 'btn2',
+      ),
     );
   }
 }

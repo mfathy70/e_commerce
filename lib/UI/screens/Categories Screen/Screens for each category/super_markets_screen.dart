@@ -19,7 +19,9 @@ class SupermarketsScreen extends StatelessWidget {
           ),*/
         ],
       ),
-      floatingActionButton: const FilterFloatingActionButton(),
+      floatingActionButton: const FilterFloatingActionButton(
+        tag: 'btn1',
+      ),
     );
   }
 }

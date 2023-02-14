@@ -33,14 +33,15 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
           useMaterial3: true,
           primaryColor: Colors.red[800],
-          bottomAppBarColor: Colors.grey[300],
-          backgroundColor: Colors.white,
           appBarTheme: AppBarTheme(
               color: Colors.red[800], foregroundColor: Colors.white),
           fontFamily: 'Cairo',
-          colorScheme: ColorScheme.fromSwatch().copyWith(
-            secondary: Colors.blueGrey[900],
-          )),
+          bottomAppBarTheme: BottomAppBarTheme(color: Colors.grey[300]),
+          colorScheme: ColorScheme.fromSwatch()
+              .copyWith(
+                secondary: Colors.blueGrey[900],
+              )
+              .copyWith(background: Colors.white)),
       home: const MyHomePage(),
     );
   }

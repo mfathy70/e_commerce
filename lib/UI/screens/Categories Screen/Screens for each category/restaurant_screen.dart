@@ -27,8 +27,7 @@ class _RestaurantScreenState extends State<RestaurantScreen> {
     restaurantstest = await RemoteService().getRestaurantsData();
     if (restaurantstest != null) {
       setState(() {
-        //____________stop api__________
-        //isLoaded = true;
+        isLoaded = true;
       });
     }
   }
@@ -45,7 +44,9 @@ class _RestaurantScreenState extends State<RestaurantScreen> {
           ),
         ],
       ),
-      floatingActionButton: const FilterFloatingActionButton(),
+      floatingActionButton: const FilterFloatingActionButton(
+        tag: 'btn0',
+      ),
     );
   }
 }

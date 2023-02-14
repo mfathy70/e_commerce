@@ -17,7 +17,9 @@ class PharmaciesScreen extends StatelessWidget {
           ),*/
         ],
       ),
-      floatingActionButton: const FilterFloatingActionButton(),
+      floatingActionButton: const FilterFloatingActionButton(
+        tag: 'btn3',
+      ),
     );
   }
 }
