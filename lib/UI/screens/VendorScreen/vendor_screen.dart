@@ -1,74 +1,108 @@
 import 'package:e_commerce/UI/screens/Home%20Screen/Home%20Screen%20Widgets/featured/featured_offers_widget.dart';
 import 'package:e_commerce/UI/widgets/search_button.dart';
+import 'package:e_commerce/services/remote_service.dart';
 import 'package:flutter/material.dart';
+import '../../../model/products.data.dart';
+import 'product_skeleton.dart';
 
-class VendorScreen extends StatelessWidget {
+class VendorScreen extends StatefulWidget {
   const VendorScreen({super.key, required this.vendorName});
 
   final String vendorName;
 
   @override
+  State<VendorScreen> createState() => _VendorScreenState();
+}
+
+class _VendorScreenState extends State<VendorScreen> {
+  List<Products>? products;
+  bool isLoaded = false;
+
+  @override
+  void initState() {
+    getData();
+    super.initState();
+  }
+
+  getData() async {
+    products = await RemoteService().getProducts();
+
+    if (products != null) {
+      setState(() {
+        isLoaded = true;
+      });
+    }
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
         resizeToAvoidBottomInset: false,
-        backgroundColor: Theme.of(context).backgroundColor,
-        appBar: VendorScreenAppBar(vendorName: vendorName),
+        backgroundColor: Theme.of(context).colorScheme.background,
+        appBar: VendorScreenAppBar(vendorName: widget.vendorName),
         body: SizedBox(
-          child: SingleChildScrollView(
-            padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
-            physics: const AlwaysScrollableScrollPhysics(),
-            child: Column(
-              children: [
-                const FeaturedOffersWidget(image: 'assets/images/food2.jpg'),
-                GridView.builder(
-                  padding: const EdgeInsets.only(top: 12),
-                  physics: const NeverScrollableScrollPhysics(),
-                  shrinkWrap: true,
-                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 3,
-                      crossAxisSpacing: 12,
-                      mainAxisSpacing: 12,
-                      mainAxisExtent: 150),
-                  itemCount: 26,
-                  itemBuilder: (BuildContext context, int index) {
-                    return Column(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        Container(
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(10),
-                            border: Border.all(
-                              color: Colors.black.withOpacity(0.2),
-                              width: 0.8,
-                            ),
-                          ),
-                          child: ClipRRect(
-                            borderRadius: BorderRadius.circular(10),
-                            child: Image.network(
-                              'https://is3-ssl.mzstatic.com/image/thumb/Purple124/v4/7f/01/d3/7f01d3fa-f802-fcff-e20a-3d58650a17ee/source/512x512bb.jpg',
-                              fit: BoxFit.fill,
-                            ),
-                          ),
-                        ),
-                        Expanded(
-                          child: Column(
-                            children: [
-                              Text(
-                                vendorName,
-                                softWrap: true,
-                                overflow: TextOverflow.ellipsis,
-                                maxLines: 2,
-                                textAlign: TextAlign.center,
-                                style: const TextStyle(height: 1.2),
+          child: Visibility(
+            visible: isLoaded,
+            replacement: const ProductsSkeleton(),
+            child: SingleChildScrollView(
+              padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
+              physics: const AlwaysScrollableScrollPhysics(),
+              child: Column(
+                children: [
+                  const FeaturedOffersWidget(image: 'assets/images/food2.jpg'),
+                  GridView.builder(
+                    padding: const EdgeInsets.only(top: 12),
+                    physics: const NeverScrollableScrollPhysics(),
+                    shrinkWrap: true,
+                    gridDelegate:
+                        const SliverGridDelegateWithFixedCrossAxisCount(
+                            crossAxisCount: 3,
+                            crossAxisSpacing: 12,
+                            mainAxisSpacing: 12,
+                            mainAxisExtent: 150),
+                    itemCount: products?.length,
+                    itemBuilder: (BuildContext context, int index) {
+                      return Column(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Container(
+                            height: 100,
+                            width: 100,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(10),
+                              border: Border.all(
+                                color: Colors.black.withOpacity(0.2),
+                                width: 0.8,
                               ),
-                            ],
+                            ),
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.circular(10),
+                              child: Image.network(
+                                products![index].image,
+                                fit: BoxFit.fill,
+                              ),
+                            ),
                           ),
-                        ),
-                      ],
-                    );
-                  },
-                ),
-              ],
+                          Expanded(
+                            child: Column(
+                              children: [
+                                Text(
+                                  products![index].title,
+                                  softWrap: true,
+                                  overflow: TextOverflow.ellipsis,
+                                  maxLines: 2,
+                                  textAlign: TextAlign.center,
+                                  style: const TextStyle(height: 1.2),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ],
+                      );
+                    },
+                  ),
+                ],
+              ),
             ),
           ),
         ));

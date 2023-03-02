@@ -1,7 +1,23 @@
 import 'package:e_commerce/model/restaurant_data.dart';
 import 'package:http/http.dart' as http;
 
+import '../model/products.data.dart';
+
 class RemoteService {
+  Future<List<Products>?> getProducts() async {
+    var client = http.Client();
+
+    var uri = Uri.parse('https://fakestoreapi.com/products');
+
+    var response = await client.get(uri);
+
+    if (response.statusCode == 200) {
+      var json = response.body;
+      return productsFromJson(json);
+    }
+    return null;
+  }
+
   Future<List<Welcome>?> getRestaurantsData() async {
     var client = http.Client();
 
